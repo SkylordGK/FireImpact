@@ -1,4 +1,5 @@
 ﻿using MathNet.Spatial.Euclidean;
+using System;
 
 namespace FireImpact
 {
@@ -16,5 +17,14 @@ namespace FireImpact
             Positon = positon;
         }
 
+        public event WeaponFiredEventHandler WeaponFired;
+
+       
+
     }
+
+ 
+
+    public delegate void WeaponFiredEventHandler();
+
 }

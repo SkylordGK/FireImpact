@@ -8,6 +8,11 @@ namespace FireImpact
     /// </summary>
     public static class GameEnvironment
     {
+        public const double MaxBlindnessDuration = 2.0d;
+        public const double MaxDeafnessDuration = 60.0d;
+        public static Soldier[] allUnits;
+
+
         /// <summary>
         /// SetBlindness funciton as stated in the Co
         /// </summary>
@@ -17,7 +22,7 @@ namespace FireImpact
         public static void SetBlindness(Soldier soldier, double duration)
         {
             if (duration > 0)
-                Console.WriteLine("Soldier_{0} will be BLIND for next {1} seconds", soldier.Id, duration);
+                Console.WriteLine("Soldier_{0} will be BLIND for next {1} seconds.", soldier.Id, duration);
         }
 
         /// <summary>
@@ -28,24 +33,16 @@ namespace FireImpact
         /// <remarks>Writes info about soldier and duration to console</remarks>
         public static void SetDeafness(Soldier soldier, double duration)
         {
-            Console.WriteLine("Soldier_{0} will be DEAF for next {1} seconds", soldier.Id, duration);
-
+            Console.WriteLine("Soldier_{0} will be DEAF for next {1} seconds.", soldier.Id, duration);
         }
 
 
-        public const double MaxBlindnessDuration = 2.0d;
-        public const double MaxDeafnessDuration = 60.0d;
-
-        //Array of all soldiers in Game Environmetn.. 
-        public static Soldier[] allUnits;
-
-
         /// <summary>
-        /// 
+        /// This method created randomly placed soldiers for quick test purposes.
         /// </summary>
         /// <param name="count">Number of soldiers that will be initialized.</param>
-        /// <param name="maxDistance"> X and Y values of soldier positon will </param>
-        public static void CreateTestUnits(int count, int maxDistance)
+        /// <param name="maxDistance">Random X and Y values of soldier positon will be in range of [-maxDistance, maxDistance]</param>
+        public static void CreateRandomTestUnits(int count, int maxDistance)
         {
 
             allUnits = new Soldier[count];
@@ -57,9 +54,9 @@ namespace FireImpact
             {
                 var x = r.Next(-maxDistance, maxDistance);
                 var y = r.Next(-maxDistance, maxDistance);
+                
                 allUnits[i] = new Soldier(i, new Vector3D(x, y, z));
             }
-
 
         }
 

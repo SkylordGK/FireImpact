@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EffectArea.cs" />
+    <Compile Include="Enums\AreaProps.cs" />
+    <Compile Include="FunctionForVBS3.cs" />
     <Compile Include="GameEnvironment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
