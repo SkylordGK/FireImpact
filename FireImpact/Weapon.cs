@@ -36,8 +36,8 @@ namespace FireImpact
         {
             Console.WriteLine("Weapon is fired towards {0} direction when muzzle position was {1}. \n", muzzleDir, muzzlePos);
 
-            // If muzzleCaliber is greater dan 20 weapon will be considered as large weapon.
-            if (muzzleCaliber > 20)
+            // If muzzleCaliber is greater dan 15 weapon will be considered as large weapon.
+            if (muzzleCaliber > 15)
                 FunctionForVBS3.ApplyBlindnessAndDeafness(GameEnvironment.allUnits, this);
         }
 

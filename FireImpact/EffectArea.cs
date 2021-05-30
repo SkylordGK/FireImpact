@@ -12,15 +12,14 @@ namespace FireImpact
     /// <remarks>Uses Degrees for Angles</remarks>
     public class EffectArea
     {
-
-
-        public AreaProps.Type Type;
-        public AreaProps.Priority Priority;
+       
         public double Rotation { get; private set; }
         public double ConeAngle { get; private set; }
         public Weapon Weapon { get; }
         public double ImpactFactorAtConeTip { get; private set; }
         public double ImpactFactorAtConeBase { get; private set; }
+        public AreaProps.Type Type { get; private set; }
+        public AreaProps.Priority Priority { get; private set; }
         private AreaProps.Range LengthFactor { get; set; }
 
 
@@ -34,7 +33,7 @@ namespace FireImpact
         /// Durations will decrease linearly as the distance from muzzle increases and will reach to MIN. at the cone base.</param>
         /// <param name="impactFactorAtConeBase">This parameter is used to calculate MIN. blindness and deafness durations of this <c>EffectArea</c>.
         /// Durations will increase linearly as the distance from muzzle decreases and will reach to MAX. at the cone tip.</param>
-        public EffectArea(ref Weapon weapon,  AreaProps.Type type, AreaProps.Priority priority, double rotation, AreaProps.Range lengthFactor, double impactFactorAtConeTip, double impactFactorAtConeBase, double coneAngle = 50)
+        public EffectArea(ref Weapon weapon, AreaProps.Type type, AreaProps.Priority priority, double rotation, AreaProps.Range lengthFactor, double impactFactorAtConeTip, double impactFactorAtConeBase, double coneAngle = 50)
         {
 
             Type = type;
@@ -55,21 +54,23 @@ namespace FireImpact
         public double GetLength()
         {
             //Convert muzzleCaliber from milimeters to meters, then multiply by LengthFactor 
-            return Weapon.muzzleCaliber / 1000 * (int) LengthFactor;
+            return Weapon.muzzleCaliber / 1000 * (int)LengthFactor;
         }
+
+        /// <summary>
+        /// The [X,Y,Z] vector the axix of Effect Area Cone is pointing.
+        /// </summary>
+        /// <returns>Returns current The [X,Y,Z] vector the axix of Effect Area Cone is pointing.</returns>
         public Vector3D GetDirection()
         {
             return Weapon.muzzleDir.Rotate(UnitVector3D.ZAxis, Angle.FromDegrees(this.Rotation));
         }
-        public double CalculateBlindnessTime(double distanceToMuzzle)
-        {
 
-            double maxTime = 2.0;
-            var impactRate = distanceToMuzzle / this.GetLength() * ImpactFactorAtConeBase;
-            impactRate = impactRate > 1 ? 1 : impactRate;
-
-            return maxTime * impactRate;
-        }
+        /// <summary>
+        /// Checks if <paramref name="point"/> is inside of  owner Effect Area.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns>Returns True if the <paramref name="point"/> is inside of owner Effect Area. Otherwise False.</returns>
         public bool IsPointInsideEffectArea(Vector3D point)
         {
 

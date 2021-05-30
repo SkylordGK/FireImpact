@@ -29,7 +29,7 @@ namespace FireImpact.Enums
 
         public enum Range
         {
-            Short = 75,
+            Short = 100,
             Medium = 200,
             Long = 350
 
