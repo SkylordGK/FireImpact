@@ -19,13 +19,12 @@ namespace FireImpact
             EffectArea low1 = new EffectArea(ref weapon, type: AreaProps.Type.Low_Effect, priority: AreaProps.Priority.Low, rotation: 90, lengthFactor: AreaProps.Range.Medium, impactFactorAtConeTip: 0.6, impactFactorAtConeBase: 0.2);
             EffectArea low2 = new EffectArea(ref weapon, type: AreaProps.Type.Low_Effect, priority: AreaProps.Priority.Low, rotation: -90, lengthFactor: AreaProps.Range.Medium, impactFactorAtConeTip: 0.6, impactFactorAtConeBase: 0.2);
 
-
             //Attach Effect Areas to weapon
             List<EffectArea> effectAreas = new List<EffectArea>() { flash, high, low1, low2 };
             weapon.effectAreas = effectAreas;
 
             //Create some randomly placed soldiers - X and Y values will be in range of -12 and 12, z = 1.8 
-            GameEnvironment.CreateRandomTestUnits(count: 100, maxDistance: 15);
+            GameEnvironment.CreateRandomTestUnits(count: 20, maxDistance: 6);
 
             //Fire!...
             weapon.Fire();

@@ -34,7 +34,7 @@ namespace FireImpact
 
         public void Fire()
         {
-            Console.WriteLine("Weapon is fired towards {0} direction when muzzle position was {1}. \n", muzzleDir, muzzlePos);
+            Console.WriteLine("Weapon is fired towards {0} direction when muzzle position was at {1}. \n", muzzleDir, muzzlePos);
 
             // If muzzleCaliber is greater dan 15 weapon will be considered as large weapon.
             if (muzzleCaliber > 15)
